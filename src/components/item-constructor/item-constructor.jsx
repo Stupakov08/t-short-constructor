@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { selectAllColors } from '../../redux/colors/colors.selectors';
 import {
     ConstructorArea,
     RenderArea,
@@ -32,10 +33,8 @@ const ItemConstructor = () => {
                     <ControllVariants>
                         {colors.map((item) => (
                             <ControllVariant url={item.color} active={item.color === activecolor}>
-
                             </ControllVariant>
                         ))}
-
                     </ControllVariants>
                 </Controll>
             </ControllWrapper>
@@ -44,6 +43,9 @@ const ItemConstructor = () => {
 }
 
 const mapStateToProps = createStructuredSelector({
-
+    colors: selectAllColors
 });
-export default connect(ItemConstructor);
+const mapDispatchToProps = dispatch => ({
+    getColors: () => { }
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ItemConstructor);
