@@ -28,7 +28,6 @@ const googleSignInStyles = css`
   background-color: #4285f4;
   color: white;
   border: none;
-
   &:hover {
     background-color: #357ae8;
     border: none;
@@ -56,6 +55,6 @@ export const CustomButtonContainer = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: center;
-  margin: 5px;
+  margin: 5px 5px 5px 0px;
   ${getButtonStyles}
 `;

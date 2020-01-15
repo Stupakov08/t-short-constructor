@@ -15,7 +15,7 @@ const config = {
 export const createUserProfileDocument = async (userAuth, additionalData) => {
 	if (!userAuth) return;
 	const userRef = firestore.doc(`users/${userAuth.uid}`);
-
+	debugger;
 	const snapshot = await userRef.get();
 
 	if (!snapshot.exists) {
@@ -68,6 +68,20 @@ export const convertCollectionsSnapshotToMap = (collections) => {
 		return accumulator;
 	}, {})
 }
+export const ColorsDocument = () => {
+	const userRef = firestore.collection(`colors`);
+	return userRef.get();
+};
+export const PrintsDocument = () => {
+	const userRef = firestore.collection(`prints`);
+	return userRef.get();
+};
+export const submitOrder = (order) => {
+	const ordersRef = firestore.collection(`orders`);
+	return ordersRef.doc().set(order);
+};
+
+
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 

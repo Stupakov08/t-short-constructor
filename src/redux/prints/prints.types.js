@@ -1,0 +1,4 @@
+export default {
+	SET_PRINTS: 'SET_PRINTS',
+	SET_ACTIVE_PRINT: 'SET_ACTIVE_PRINT'
+};

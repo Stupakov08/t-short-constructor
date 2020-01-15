@@ -1,5 +1,10 @@
 import ColorActionTypes from './colors.types';
 
-export const getColors = () => ({
-	type: ColorActionTypes.GET_COLORS,
+export const setColors = (colors) => ({
+	type: ColorActionTypes.SET_COLORS,
+	payload: colors
+});
+export const setActiveColor = (color) => ({
+	type: ColorActionTypes.SET_ACTIVE_COLOR,
+	payload: color
 });

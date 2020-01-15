@@ -1,18 +1,24 @@
-import { ColorActionTypes } from './color.types';
+import ColorActionTypes from './colors.types';
 
 const INITIAL_STATE = {
-	currentUser: null
+	colors: null,
+	activeColor: null
 };
-const userReducer = (state = INITIAL_STATE, action) => {
+const colorReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-		case ColorActionTypes.SET_CURRENT_USER:
+		case ColorActionTypes.SET_COLORS:
 			return {
 				...state,
-				currentUser: action.payload
+				colors: action.payload
+			};
+		case ColorActionTypes.SET_ACTIVE_COLOR:
+			return {
+				...state,
+				activeColor: action.payload
 			};
 		default:
 			return state;
 	}
 };
 
-export default userReducer;
+export default colorReducer;

@@ -24,7 +24,7 @@ class SignIn extends React.Component {
 					<img src={logo} alt="" />
 				</div>
 				<h3 className="title">FillYuriy</h3>
-				<h6 className="sub-title">Please, sign in to get pleasure.</h6>
+				<h6 className="sub-title">Please, sign in to order the TOP merch.</h6>
 				<div className='buttons'>
 					<GoogleButton onClick={signInWithGoogle}>
 						Sign In With Google
