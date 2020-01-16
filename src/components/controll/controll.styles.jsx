@@ -11,6 +11,7 @@ export const ControllVariants = styled.div`
     height: 50px;
     margin-top: 10px;
     display: flex;
+    flex-wrap: wrap;
 `;
 export const ControllVariant = styled.div`
     height: 50px;

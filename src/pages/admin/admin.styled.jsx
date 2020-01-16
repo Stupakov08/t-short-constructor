@@ -66,3 +66,6 @@ export const VerticalFlex = styled.div`
   flex-direction: column;
   align-items: stratch;
 `;
+export const Overflowik = styled.div`
+  overflow: auto;
+`;
