@@ -9,7 +9,8 @@ const colorReducer = (state = INITIAL_STATE, action) => {
 		case ColorActionTypes.SET_COLORS:
 			return {
 				...state,
-				colors: action.payload
+				colors: action.payload,
+				activeColor: action.payload[0]
 			};
 		case ColorActionTypes.SET_ACTIVE_COLOR:
 			return {

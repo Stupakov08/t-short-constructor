@@ -9,7 +9,8 @@ const printReducer = (state = INITIAL_STATE, action) => {
 		case PrintActionTypes.SET_PRINTS:
 			return {
 				...state,
-				prints: action.payload
+				prints: action.payload,
+				activePrint: action.payload[0]
 			};
 		case PrintActionTypes.SET_ACTIVE_PRINT:
 			return {

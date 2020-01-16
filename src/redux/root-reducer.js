@@ -8,23 +8,8 @@ import ordersReducer from './orders/orders.reducer';
 
 const persistUserConfig = {
 	key: 'user',
-	storage,
-}
-const persistConfig = {
-	key: 'root',
-	storage,
-}
-const persistPrintsConfig = {
-	key: 'prints',
-	storage,
-	backlist: ['prints']
-}
-const persistColorsConfig = {
-	key: 'colors',
-	storage,
-	backlist: ['colors']
-}
-
+	storage
+};
 
 const rootReducer = combineReducers({
 	user: persistReducer(persistUserConfig, userReducer),
@@ -32,6 +17,5 @@ const rootReducer = combineReducers({
 	prints: printReducer,
 	orders: ordersReducer
 });
-
 
 export default rootReducer;
