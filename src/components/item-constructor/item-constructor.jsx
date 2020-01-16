@@ -54,6 +54,7 @@ const ItemConstructor = ({ currentUser, colors, prints, activePrint, activeColor
             screenshot: screenshot.toDataURL(),
             activeColor,
             activePrint,
+            time: (+ new Date()),
             user: {
                 id: currentUser.id,
                 email: currentUser.email,

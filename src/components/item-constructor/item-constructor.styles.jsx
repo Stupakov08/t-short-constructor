@@ -13,7 +13,8 @@ export const ConstructorArea = styled.div`
 `;
 export const RenderArea = styled.div`
   width: 50%;
-  heigth: 100%;
+  height: 100%;
+  box-sizing: border-box;
   box-shadow: 1px 0px 1px #00000010;
 `;
 export const RenderWrapper = styled.div`
@@ -38,6 +39,8 @@ export const ImageCanvas = styled.div`
   opacity: 0.9;
 `;
 export const ControllWrapper = styled.div`
+  width: 50%;
+  box-sizing: border-box;
   padding: 20px 40px;
   display: flex;
   flex-direction: column;

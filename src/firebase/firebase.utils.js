@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
-
 const config = {
 	apiKey: "AIzaSyB98Z0zmRQBpEyCIeFkFjqiKYHj1n63_L0",
 	authDomain: "fillyuriy-64395.firebaseapp.com",
@@ -15,7 +14,6 @@ const config = {
 export const createUserProfileDocument = async (userAuth, additionalData) => {
 	if (!userAuth) return;
 	const userRef = firestore.doc(`users/${userAuth.uid}`);
-	debugger;
 	const snapshot = await userRef.get();
 
 	if (!snapshot.exists) {
@@ -79,6 +77,16 @@ export const PrintsDocument = () => {
 export const submitOrder = (order) => {
 	const ordersRef = firestore.collection(`orders`);
 	return ordersRef.doc().set(order);
+};
+export const getOrders = () => {
+	const ordersRef = firestore.collection(`orders`);
+	return ordersRef.get();
+};
+export const pickUpOrder = (id) => {
+	firestore.collection("orders").doc(id).update({ status: "pickedup" });
+};
+export const finishOrder = (id) => {
+	firestore.collection("orders").doc(id).update({ status: "finished" });
 };
 
 

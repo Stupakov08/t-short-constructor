@@ -12,7 +12,7 @@ export const HeaderContainer = styled.div`
   box-shadow: 1px 0px 3px 1px #00000020;
 `;
 export const Content = styled.div`
-  width: 1000px;
+  width: 1200px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
