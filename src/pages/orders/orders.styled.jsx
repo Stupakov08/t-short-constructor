@@ -5,6 +5,7 @@ export const Content = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  padding: 0 20px;
 `;
 
 export const AdminArea = styled.div`

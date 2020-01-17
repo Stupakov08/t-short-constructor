@@ -6,7 +6,12 @@ import rootReducer from './root-reducer';
 
 const middlewares = [];
 
-export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)));
+let applyMiddlewares = applyMiddleware(...middlewares);
+
+if (process.env.NODE_ENV !== 'production') {
+    applyMiddlewares = composeWithDevTools(applyMiddlewares)
+}
+export const store = createStore(rootReducer, applyMiddlewares);
 
 export const persistor = persistStore(store);
 

@@ -17,6 +17,7 @@ export const Content = styled.div`
 	display: flex;
 	justify-content: space-between;
 	position: relative;
+	padding: 0 20px;
 `;
 
 export const LogoContainer = styled(Link)`

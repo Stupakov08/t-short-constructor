@@ -39,7 +39,7 @@ const OrderButton = ({
 	return (
 		<>
 			<Price>
-				<PriceDiscount>500 UAH</PriceDiscount>250 UAH
+				<PriceDiscount>500 UAH</PriceDiscount>250 UAH<span className="capture">The price may vary after order.</span>
 			</Price>
 			<CustomButton onClick={Order}> Order </CustomButton>
 		</>

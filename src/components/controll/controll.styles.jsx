@@ -20,6 +20,7 @@ export const ControllVariant = styled.div`
 	background-size: contain;
 	background-repeat: no-repeat;
 	margin-right: 5px;
+	margin-bottom: 5px;
 	box-sizing: border-box;
 	cursor: pointer;
 	display: flex;

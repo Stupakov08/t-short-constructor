@@ -28,6 +28,7 @@ const ItemConstructor = ({
 				<RenderWrapper>
 					<Canvas forvardcanvasRef={canvasRef} />
 				</RenderWrapper>
+				<div className="capture">This is an approximate view only. The product may differ from what you see above.</div>
 			</RenderArea>
 			<ControllWrapper>
 				<Controlls />

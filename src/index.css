@@ -16,3 +16,15 @@ code {
 .logo{
   max-height: 100%;
 }
+div.capture{
+  font-size: 11px;
+  color: #a5a5a5;
+  padding-top: 10px;
+  text-align: center;
+}
+span.capture{
+  font-size: 11px;
+  color: #a5a5a5;
+  text-align: left;
+  display: block;
+}
