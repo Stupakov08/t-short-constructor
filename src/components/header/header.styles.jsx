@@ -19,12 +19,13 @@ export const Content = styled.div`
 	position: relative;
 `;
 
-export const LogoContainer = styled.div`
+export const LogoContainer = styled(Link)`
 	height: 100%;
 	width: 70px;
 	display: flex;
 	align-items: center;
 	color: #202020;
+	text-decoration: none;
 `;
 
 export const OptionsContainer = styled.div`

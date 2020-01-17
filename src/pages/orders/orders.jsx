@@ -2,11 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { setOrders } from '../../redux/orders/orders.actions';
 import {
-	getOrders,
-	pickUpOrder,
-	finishOrder
+	getUserOrders,
 } from '../../firebase/firebase.utils';
-import CustomButton from '../../components/custom-button/custom-button.component';
 import {
 	Content,
 	AdminArea,
@@ -15,36 +12,21 @@ import {
 	OrderItem,
 	OrderImage,
 	OrderColumn,
-	VerticalFlex,
 	OrderHeaderItem
-} from './admin.styled';
+} from './orders.styled';
 import Header from '../../components/header/header.component';
-import {
-	setPickUpOrder,
-	setFinishOrder
-} from '../../redux/orders/orders.actions';
 
-const Admin = ({ setOrders, orders, setPickUpOrder, setFinishOrder }) => {
+const Orders = ({ setOrders, orders, user }) => {
 	useEffect(() => {
-		getOrders().then(res => {
+		getUserOrders(user).then(res => {
 			let orders = res.docs.map(snap => ({ id: snap.id, ...snap.data() }));
 			orders = orders.sort(function (x, y) {
 				return y.time - x.time;
 			})
 			setOrders(orders);
 		});
-	}, [setOrders]);
+	}, [setOrders, user]);
 
-	const pickUpHandle = order => () => {
-		if (order.status === 'pickedup') return;
-		pickUpOrder(order.id);
-		setPickUpOrder(order);
-	};
-	const finishOrderHandle = order => () => {
-		if (order.status === 'finished') return;
-		finishOrder(order.id);
-		setFinishOrder(order);
-	};
 	return (
 		<>
 			<Header></Header>
@@ -54,13 +36,12 @@ const Admin = ({ setOrders, orders, setPickUpOrder, setFinishOrder }) => {
 						<OrderHeaderItem>
 							<OrderImage>Image</OrderImage>
 							<OrderColumn>Id</OrderColumn>
-							<OrderColumn>EMail</OrderColumn>
-							<OrderColumn>Name</OrderColumn>
 							<OrderColumn>Size</OrderColumn>
 							<OrderColumn>Color</OrderColumn>
 							<OrderColumn>Print</OrderColumn>
 							<OrderColumn>Time</OrderColumn>
-							<OrderColumn></OrderColumn>
+							<OrderColumn>Price</OrderColumn>
+							<OrderColumn>Status</OrderColumn>
 						</OrderHeaderItem>
 						<OrderList>
 							{orders &&
@@ -72,8 +53,6 @@ const Admin = ({ setOrders, orders, setPickUpOrder, setFinishOrder }) => {
 										<div>{i + 1}</div>
 										<OrderImage url={order.screenshot}></OrderImage>
 										<OrderColumn>{order.id}</OrderColumn>
-										<OrderColumn>{order.user.email}</OrderColumn>
-										<OrderColumn>{order.user.displayName}</OrderColumn>
 										<OrderColumn>{order.activeSize.name}</OrderColumn>
 										<OrderColumn>{order.activeColor.url}</OrderColumn>
 										<OrderColumn>{order.activePrint.url}</OrderColumn>
@@ -83,25 +62,10 @@ const Admin = ({ setOrders, orders, setPickUpOrder, setFinishOrder }) => {
 												return date.toUTCString();
 											})()}
 										</OrderColumn>
-										<VerticalFlex>
-											<CustomButton
-												small
-												onClick={pickUpHandle(order)}
-												disabled={
-													order.status === 'pickedup' ||
-													order.status === 'finished'
-												}
-											>
-												Picked up
-											</CustomButton>
-											<CustomButton
-												small
-												onClick={finishOrderHandle(order)}
-												disabled={order.status === 'finished'}
-											>
-												Given away
-											</CustomButton>
-										</VerticalFlex>
+										<OrderColumn>{order.price} UAH</OrderColumn>
+										<OrderColumn>
+											{order.status === "finished" ? "Recieved" : "In progress"}
+										</OrderColumn>
 									</OrderItem>
 								))}
 						</OrderList>
@@ -113,17 +77,12 @@ const Admin = ({ setOrders, orders, setPickUpOrder, setFinishOrder }) => {
 };
 
 const mapStateToProps = props => ({
-	orders: props.orders.orders
+	orders: props.orders.orders,
+	user: props.user.currentUser
 });
 const mapDispatchToProps = dispatch => ({
 	setOrders: orders => {
 		dispatch(setOrders(orders));
 	},
-	setPickUpOrder: order => {
-		dispatch(setPickUpOrder(order));
-	},
-	setFinishOrder: order => {
-		dispatch(setFinishOrder(order));
-	}
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Admin);
+export default connect(mapStateToProps, mapDispatchToProps)(Orders);

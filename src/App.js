@@ -12,6 +12,7 @@ import { createStructuredSelector } from 'reselect';
 import { setCurrentUser } from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import Admin from './pages/admin/admin';
+import Orders from './pages/orders/orders';
 
 
 class App extends React.Component {
@@ -43,6 +44,7 @@ class App extends React.Component {
       <div>
         <Switch>
           <Route exect path='/admin' render={() => this.props.currentUser && this.props.currentUser.moderator === true ? <Admin></Admin> : <Redirect to="/" />} />
+          <Route exact path='/orders' render={() => this.props.currentUser ? <Orders /> : <Redirect to="/signin" />} />
           <Route exact path='/' render={() => this.props.currentUser ? <Constructor /> : <Redirect to="/signin" />} />
           <Route
             exact

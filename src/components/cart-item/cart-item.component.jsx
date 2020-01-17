@@ -6,7 +6,7 @@ import './cart-item.styles.scss';
 import { connect } from 'react-redux';
 import { removeItem } from '../../redux/cart/cart.actions';
 
-const CartItem = ({ item: { orderId, screenshot, price, name, quantity }, removeItem, item }) => {
+const CartItem = ({ item: { orderId, screenshot, price, activeSize, quantity }, removeItem, item }) => {
 	const deleteHandler = (item) => () => {
 		removeItem(item);
 	}
@@ -14,7 +14,7 @@ const CartItem = ({ item: { orderId, screenshot, price, name, quantity }, remove
 		<div className='cart-item'>
 			<ItemIcon url={screenshot}></ItemIcon>
 			<div className='item-details'>
-				<span className='name'>{name}</span>
+				<span className='name'>{activeSize.name}</span>
 				<span className='price'>
 					{quantity} x {price} UAH
 			</span>

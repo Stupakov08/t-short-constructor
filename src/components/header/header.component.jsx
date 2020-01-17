@@ -22,16 +22,23 @@ import {
 const Header = ({ currentUser, hidden, signOut }) => (
 	<HeaderContainer>
 		<Content>
-			<LogoContainer>
+			<LogoContainer to={"/"}>
 				<img src={logo} className='logo' alt="" />
 				<Title>
 					Fill Yuriy
-				</Title>
+					</Title>
+
 			</LogoContainer>
 
 			<OptionsContainer>
+				<OptionLink to="/">
+					Constructor
+				</OptionLink>
+				<OptionLink to="/orders">
+					My orders
+				</OptionLink>
 				<OptionLink to="" onClick={() => auth.signOut().then(() => signOut())}>
-					SIGN OUT
+					Sign out
 				</OptionLink>
 				<CartIcon />
 			</OptionsContainer>

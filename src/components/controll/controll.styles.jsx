@@ -22,6 +22,11 @@ export const ControllVariant = styled.div`
 	margin-right: 5px;
 	box-sizing: border-box;
 	cursor: pointer;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+	font-size: 20px;
+	color: #202020;
 	${props =>
 		props.active
 			? `border: 1px solid rgb(0,0,255,0.5); box-shadow: 0px 1px 3px rgba(0,0,0,0.2)`

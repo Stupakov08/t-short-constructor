@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { toggleCartHidden, clearItemFromCart } from '../../redux/cart/cart.actions.js';
@@ -10,10 +10,22 @@ import './cart-dropdown.styles.scss';
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selectors';
 
 const CartDropdown = ({ cartItems, history, dispatch, total }) => {
+	const dropdownRef = useRef();
 
+	useEffect(() => {
+		const clickHandler = (e) => {
+			const target = e.target;
+			const current = dropdownRef.current;
+			if (document.contains(target) && !current.contains(target)) {
+				dispatch(toggleCartHidden());
+			}
+		}
+		document.addEventListener('click', clickHandler);
+		return () => document.removeEventListener('click', clickHandler);
+	}, [dispatch]);
 
 	return (
-		<div className='cart-dropdown'>
+		<div className='cart-dropdown' ref={dropdownRef}>
 			<div className='cart-items'>
 				{cartItems.length ? (
 					cartItems.map(cartItem => (

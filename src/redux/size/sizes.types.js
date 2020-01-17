@@ -1,0 +1,4 @@
+export default {
+	SET_SIZES: 'SET_SIZES',
+	SET_ACTIVE_SIZES: 'SET_ACTIVE_SIZES'
+};

@@ -13,6 +13,7 @@ const OrderButton = ({
 	addItem,
 	activePrint,
 	activeColor,
+	activeSize,
 	canvasRef
 }) => {
 	const Order = async e => {
@@ -23,6 +24,7 @@ const OrderButton = ({
 			price: 250,
 			activeColor,
 			activePrint,
+			activeSize,
 			time: timestamp,
 			user: {
 				id: currentUser.id,
@@ -47,7 +49,8 @@ const OrderButton = ({
 const mapStateToProps = props => ({
 	currentUser: props.user.currentUser,
 	activeColor: props.colors.activeColor,
-	activePrint: props.prints.activePrint
+	activePrint: props.prints.activePrint,
+	activeSize: props.sizes.activeSize
 });
 const mapDispatchToProps = dispatch => ({
 	addItem: item => dispatch(addItem(item))

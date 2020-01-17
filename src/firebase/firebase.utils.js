@@ -74,6 +74,10 @@ export const PrintsDocument = () => {
 	const userRef = firestore.collection(`prints`);
 	return userRef.get();
 };
+export const SizesDocument = () => {
+	const userRef = firestore.collection(`sizes`);
+	return userRef.get();
+};
 export const submitOrder = (orders) => {
 	const ordersRef = firestore.collection(`orders`);
 	return orders && orders.map((order) => {
@@ -83,6 +87,10 @@ export const submitOrder = (orders) => {
 export const getOrders = () => {
 	const ordersRef = firestore.collection(`orders`);
 	return ordersRef.get();
+};
+export const getUserOrders = (user) => {
+	const ordersRef = firestore.collection(`orders`)
+	return ordersRef.where("user.id", "==", user.id).get();
 };
 export const pickUpOrder = (id) => {
 	firestore.collection("orders").doc(id).update({ status: "pickedup" });

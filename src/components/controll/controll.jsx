@@ -6,20 +6,21 @@ import {
     ControllVariant
 } from './controll.styles';
 
-const ConstructorControll = ({ title, items, activeItem, baseUrl, handleClick }) => {
+const ConstructorControll = ({ title, items, activeItem, baseUrl, handleClick, text }) => {
     return (
         <Controll>
             <ControllTitle>{title}</ControllTitle>
             <ControllVariants>
-                {items && items.map((item) => (
-                    <ControllVariant url={require('../../' + baseUrl + item.url)}
+                {activeItem && items && items.map((item) => (
+                    <ControllVariant url={baseUrl && item.url && require('../../' + baseUrl + item.url)}
                         active={item.id === activeItem.id}
                         onClick={handleClick(item)}
                         key={item.id}>
+                        {item.name}
                     </ControllVariant>
                 ))}
             </ControllVariants>
-        </Controll>
+        </Controll >
     );
 }
 
