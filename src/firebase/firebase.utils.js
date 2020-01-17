@@ -74,9 +74,11 @@ export const PrintsDocument = () => {
 	const userRef = firestore.collection(`prints`);
 	return userRef.get();
 };
-export const submitOrder = (order) => {
+export const submitOrder = (orders) => {
 	const ordersRef = firestore.collection(`orders`);
-	return ordersRef.doc().set(order);
+	return orders && orders.map((order) => {
+		return ordersRef.doc().set(order);
+	});
 };
 export const getOrders = () => {
 	const ordersRef = firestore.collection(`orders`);

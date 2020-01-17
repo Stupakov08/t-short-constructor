@@ -11,13 +11,17 @@ const persistUserConfig = {
 	key: 'user',
 	storage
 };
+const persistCartConfig = {
+	key: 'cart',
+	storage
+};
 
 const rootReducer = combineReducers({
 	user: persistReducer(persistUserConfig, userReducer),
 	colors: colorsReducer,
 	prints: printReducer,
 	orders: ordersReducer,
-	cart: cartReducer // TO DO: check persist mode for carts
+	cart: persistReducer(persistCartConfig, cartReducer) // TO DO: check persist mode for carts
 });
 
 export default rootReducer;

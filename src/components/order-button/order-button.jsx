@@ -1,7 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import html2canvas from 'html2canvas';
 import CustomButton from '../custom-button/custom-button.component';
+import { connect } from 'react-redux';
 import { addItem } from '../../redux/cart/cart.actions';
 
 import {
@@ -37,7 +37,7 @@ const OrderButton = ({
 	return (
 		<>
 			<Price>
-				<PriceDiscount class="price-discount">500 UAH</PriceDiscount>250 UAH
+				<PriceDiscount>500 UAH</PriceDiscount>250 UAH
 			</Price>
 			<CustomButton onClick={Order}> Order </CustomButton>
 		</>

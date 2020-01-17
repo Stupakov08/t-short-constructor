@@ -27,7 +27,10 @@ import {
 const Admin = ({ setOrders, orders, setPickUpOrder, setFinishOrder }) => {
 	useEffect(() => {
 		getOrders().then(res => {
-			const orders = res.docs.map(snap => ({ id: snap.id, ...snap.data() }));
+			let orders = res.docs.map(snap => ({ id: snap.id, ...snap.data() }));
+			orders = orders.sort(function (x, y) {
+				return y.time - x.time;
+			})
 			setOrders(orders);
 		});
 	}, [setOrders]);
@@ -60,11 +63,12 @@ const Admin = ({ setOrders, orders, setPickUpOrder, setFinishOrder }) => {
 						</OrderHeaderItem>
 						<OrderList>
 							{orders &&
-								orders.map(order => (
+								orders.map((order, i) => (
 									<OrderItem
 										key={order.id}
 										semiTransparent={order.status === 'finished'}
 									>
+										<div>{i + 1}</div>
 										<OrderImage url={order.screenshot}></OrderImage>
 										<OrderColumn>{order.id}</OrderColumn>
 										<OrderColumn>{order.user.email}</OrderColumn>

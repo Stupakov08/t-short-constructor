@@ -16,6 +16,7 @@ export const Content = styled.div`
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
+	position: relative;
 `;
 
 export const LogoContainer = styled.div`
