@@ -4,9 +4,7 @@ import CustomButton from '../custom-button/custom-button.component';
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/cart/cart.actions';
 
-import {
-	Price, PriceDiscount
-} from './order-button.styled';
+import { Price, PriceDiscount } from './order-button.styled';
 
 const OrderButton = ({
 	currentUser,
@@ -21,7 +19,7 @@ const OrderButton = ({
 		const timestamp = +new Date();
 		const order = {
 			orderId: timestamp,
-			price: 250,
+			price: 299,
 			activeColor,
 			activePrint,
 			activeSize,
@@ -31,7 +29,7 @@ const OrderButton = ({
 				email: currentUser.email,
 				displayName: currentUser.displayName
 			},
-			screenshot: screenshot.toDataURL(),
+			screenshot: screenshot.toDataURL()
 		};
 		addItem(order);
 	};
@@ -39,9 +37,10 @@ const OrderButton = ({
 	return (
 		<>
 			<Price>
-				<PriceDiscount>500 UAH</PriceDiscount>250 UAH<span className="capture">The price may vary after order.</span>
+				<PriceDiscount>650 UAH</PriceDiscount>299 UAH
+				<span className='capture'>The price may vary after order.</span>
 			</Price>
-			<CustomButton onClick={Order}> Order </CustomButton>
+			<CustomButton onClick={Order}>Add to basket</CustomButton>
 		</>
 	);
 };

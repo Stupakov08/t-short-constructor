@@ -22,11 +22,14 @@ export const Content = styled.div`
 
 export const LogoContainer = styled(Link)`
 	height: 100%;
-	width: 70px;
+	width: 180px;
 	display: flex;
 	align-items: center;
 	color: #202020;
 	text-decoration: none;
+	@media (max-width: 768px) {
+		margin-left: 52px;
+	}
 `;
 
 export const OptionsContainer = styled.div`
@@ -44,4 +47,14 @@ export const OptionLink = styled(Link)`
 export const Title = styled.div`
 	font-size: 1.6rem;
 	white-space: nowrap;
+`;
+export const Burger = styled.div`
+	@media (min-width: 769px) {
+		display: none;
+	}
+`;
+export const DesktopMenu = styled.div`
+	@media (max-width: 768px) {
+		display: none;
+	}
 `;
