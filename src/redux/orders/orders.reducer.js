@@ -1,7 +1,7 @@
 import OrderActionTypes from './orders.types';
 
 const INITIAL_STATE = {
-	orders: null
+	orders: null,
 };
 const orderReducer = (state = INITIAL_STATE, action) => {
 	switch (action.type) {

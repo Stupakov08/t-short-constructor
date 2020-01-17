@@ -3,6 +3,7 @@ import Controlls from '../controlls/controlls';
 import Canvas from '../canvas/canvas';
 import OrderButton from '../order-button/order-button';
 
+
 import {
 	ConstructorArea,
 	RenderArea,

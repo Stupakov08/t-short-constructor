@@ -1,42 +1,55 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { submitOrder } from '../../firebase/firebase.utils';
 import html2canvas from 'html2canvas';
 import CustomButton from '../custom-button/custom-button.component';
+import { addItem } from '../../redux/cart/cart.actions';
+
+import {
+	Price, PriceDiscount
+} from './order-button.styled';
 
 const OrderButton = ({
 	currentUser,
-	colors,
-	prints,
+	addItem,
 	activePrint,
 	activeColor,
 	canvasRef
 }) => {
 	const Order = async e => {
 		const screenshot = await html2canvas(canvasRef.current);
+		const timestamp = +new Date();
 		const order = {
-			screenshot: screenshot.toDataURL(),
+			orderId: timestamp,
+			price: 250,
 			activeColor,
 			activePrint,
-			time: +new Date(),
+			time: timestamp,
 			user: {
 				id: currentUser.id,
 				email: currentUser.email,
 				displayName: currentUser.displayName
-			}
+			},
+			screenshot: screenshot.toDataURL(),
 		};
-		let confirmation = window.confirm('Confirm Order');
-		confirmation && submitOrder(order);
+		addItem(order);
 	};
 
-	return <CustomButton onClick={Order}> Order </CustomButton>;
+	return (
+		<>
+			<Price>
+				<PriceDiscount class="price-discount">500 UAH</PriceDiscount>250 UAH
+			</Price>
+			<CustomButton onClick={Order}> Order </CustomButton>
+		</>
+	);
 };
 
 const mapStateToProps = props => ({
 	currentUser: props.user.currentUser,
-	colors: props.colors.colors,
 	activeColor: props.colors.activeColor,
-	prints: props.prints.prints,
 	activePrint: props.prints.activePrint
 });
-export default connect(mapStateToProps)(OrderButton);
+const mapDispatchToProps = dispatch => ({
+	addItem: item => dispatch(addItem(item))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(OrderButton);

@@ -5,8 +5,8 @@ import { createStructuredSelector } from 'reselect';
 
 import CartIcon from '../cart-icon/cart-icon.components';
 import logo from '../../assets/icons/signinlogo.png';
-// import CartDropdown from '../cart-dropdown/cart-dropdown.component';
-// import { selectCartHidden } from '../../redux/cart/cart.selectors';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import { selectCartHidden } from '../../redux/cart/cart.selectors';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { clearUser } from '../../redux/user/user.actions';
 import {
@@ -34,14 +34,14 @@ const Header = ({ currentUser, hidden, signOut }) => (
 				</OptionLink>
 				<CartIcon />
 			</OptionsContainer>
-			{/* {hidden ? null : <CartDropdown />} */}
+			{hidden ? null : <CartDropdown />}
 		</Content>
 	</HeaderContainer >
 );
 
 const mapStateToProps = createStructuredSelector({
 	currentUser: selectCurrentUser,
-	// hidden: selectCartHidden
+	hidden: selectCartHidden
 });
 const mapDispatchToProps = dispatch => ({
 	signOut: () => { dispatch(clearUser()) }
