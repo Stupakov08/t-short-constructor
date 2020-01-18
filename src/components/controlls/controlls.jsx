@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { ColorsDocument, PrintsDocument, SizesDocument } from '../../firebase/firebase.utils';
+import {
+	ColorsDocument,
+	PrintsDocument,
+	SizesDocument
+} from '../../firebase/firebase.utils';
 import { setColors, setActiveColor } from '../../redux/colors/colors.actions';
 import { setPrints, setActivePrint } from '../../redux/prints/prints.actions';
 import { setSizes, setActiveSize } from '../../redux/size/sizes.actions';
@@ -18,13 +22,13 @@ const Controlls = ({
 	setSizes,
 	...props
 }) => {
-
 	useEffect(() => {
 		ColorsDocument().then(res => {
 			let docs = res.docs.map(i => {
 				return {
 					id: i.id,
-					url: i.data().url
+					url: i.data().url,
+					name: i.data().name
 				};
 			});
 			setColors(docs);
@@ -33,7 +37,8 @@ const Controlls = ({
 			let docs = res.docs.map(i => {
 				return {
 					id: i.id,
-					url: i.data().url
+					url: i.data().url,
+					name: i.data().name
 				};
 			});
 			setPrints(docs);
@@ -69,12 +74,14 @@ const Controlls = ({
 				activeItem={activeColor}
 				baseUrl={'assets/colors/'}
 				handleClick={colorClickHandle}
+				displayNameAsTitle={true}
 			/>
 			<Controll
 				title={'Sizes:'}
 				items={sizes}
 				activeItem={activeSize}
 				handleClick={sizeClickHandle}
+				displayNameAsTitle={false}
 			/>
 			<Controll
 				title={'Prints:'}
@@ -82,6 +89,7 @@ const Controlls = ({
 				activeItem={activePrint}
 				baseUrl={'assets/prints/'}
 				handleClick={printClickHandle}
+				displayNameAsTitle={true}
 			/>
 		</>
 	);
@@ -93,7 +101,7 @@ const mapStateToProps = props => ({
 	prints: props.prints.prints,
 	activePrint: props.prints.activePrint,
 	sizes: props.sizes.sizes,
-	activeSize: props.sizes.activeSize,
+	activeSize: props.sizes.activeSize
 });
 const mapDispatchToProps = dispatch => ({
 	setColors: colors => {

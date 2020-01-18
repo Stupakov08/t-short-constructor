@@ -81,8 +81,14 @@ const Admin = ({ setOrders, orders, setPickUpOrder, setFinishOrder }) => {
 										<OrderColumn>{order.user.email}</OrderColumn>
 										<OrderColumn>{order.user.displayName}</OrderColumn>
 										<OrderColumn>{order.activeSize.name}</OrderColumn>
-										<OrderColumn>{order.activeColor.url}</OrderColumn>
-										<OrderColumn>{order.activePrint.url}</OrderColumn>
+										<OrderColumn>
+											<div>{order.activeColor.name}</div>
+											<div>{order.activeColor.url}</div>
+										</OrderColumn>
+										<OrderColumn>
+											<div>{order.activePrint.name}</div>
+											<div>{order.activePrint.url}</div>
+										</OrderColumn>
 										<OrderColumn>
 											{(() => {
 												let date = new Date(order.time);

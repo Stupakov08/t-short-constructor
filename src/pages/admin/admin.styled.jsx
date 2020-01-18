@@ -60,6 +60,7 @@ export const OrderColumn = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 	box-sizing: border-box;
 	word-break: break-all;
 `;

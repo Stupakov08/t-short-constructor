@@ -6,7 +6,7 @@ import { removeItem } from '../../redux/cart/cart.actions';
 import SimpleCanvas from '../canvas/simple-canvas';
 
 const CartItem = ({
-	item: { orderId, screenshot, price, activeSize, quantity },
+	item: { price, activeSize, quantity },
 	removeItem,
 	item
 }) => {

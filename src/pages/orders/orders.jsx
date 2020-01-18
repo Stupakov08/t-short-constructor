@@ -58,8 +58,8 @@ const Orders = ({ setOrders, orders, user }) => {
 										</OrderImage>
 										<OrderColumn>{order.id}</OrderColumn>
 										<OrderColumn>{order.activeSize.name}</OrderColumn>
-										<OrderColumn>{order.activeColor.url}</OrderColumn>
-										<OrderColumn>{order.activePrint.url}</OrderColumn>
+										<OrderColumn>{order.activeColor.name}</OrderColumn>
+										<OrderColumn>{order.activePrint.name}</OrderColumn>
 										<OrderColumn>
 											{(() => {
 												let date = new Date(order.time);
