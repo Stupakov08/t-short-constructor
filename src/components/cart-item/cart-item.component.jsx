@@ -22,7 +22,10 @@ const CartItem = ({
 				></SimpleCanvas>
 			</ItemIcon>
 			<div className='item-details'>
-				<span className='name'>{activeSize.name}</span>
+				<span className='name'>{item.activePrint.name}</span>
+				<span className='desc'>
+					{item.activeColor.name} | {item.activeSize.name}
+				</span>
 				<span className='price'>
 					{quantity} x {price} UAH
 				</span>
