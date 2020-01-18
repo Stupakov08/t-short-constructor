@@ -10,4 +10,5 @@ export const ColorCanvas = styled.div`
 	background-size: cover;
 	margin: 0 auto;
 	background-position: center top;
+	transform: scale(1.35);
 `;

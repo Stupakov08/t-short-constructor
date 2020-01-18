@@ -1,8 +1,7 @@
 import React from 'react';
-import html2canvas from 'html2canvas';
 import CustomButton from '../custom-button/custom-button.component';
 import { connect } from 'react-redux';
-import { addItem } from '../../redux/cart/cart.actions';
+import { addItem, toggleCartHidden } from '../../redux/cart/cart.actions';
 
 import { Price, PriceDiscount } from './order-button.styled';
 
@@ -12,10 +11,9 @@ const OrderButton = ({
 	activePrint,
 	activeColor,
 	activeSize,
-	canvasRef
+	toggleCartHidden
 }) => {
 	const Order = async e => {
-		const screenshot = await html2canvas(canvasRef.current);
 		const timestamp = +new Date();
 		const order = {
 			orderId: timestamp,
@@ -28,10 +26,10 @@ const OrderButton = ({
 				id: currentUser.id,
 				email: currentUser.email,
 				displayName: currentUser.displayName
-			},
-			screenshot: screenshot.toDataURL()
+			}
 		};
 		addItem(order);
+		toggleCartHidden();
 	};
 
 	return (
@@ -52,6 +50,7 @@ const mapStateToProps = props => ({
 	activeSize: props.sizes.activeSize
 });
 const mapDispatchToProps = dispatch => ({
-	addItem: item => dispatch(addItem(item))
+	addItem: item => dispatch(addItem(item)),
+	toggleCartHidden: item => dispatch(toggleCartHidden(true))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(OrderButton);

@@ -23,14 +23,15 @@ import {
 	setPickUpOrder,
 	setFinishOrder
 } from '../../redux/orders/orders.actions';
+import SimpleCanvas from '../../components/canvas/simple-canvas';
 
 const Admin = ({ setOrders, orders, setPickUpOrder, setFinishOrder }) => {
 	useEffect(() => {
 		getOrders().then(res => {
 			let orders = res.docs.map(snap => ({ id: snap.id, ...snap.data() }));
-			orders = orders.sort(function (x, y) {
+			orders = orders.sort(function(x, y) {
 				return y.time - x.time;
-			})
+			});
 			setOrders(orders);
 		});
 	}, [setOrders]);
@@ -70,7 +71,12 @@ const Admin = ({ setOrders, orders, setPickUpOrder, setFinishOrder }) => {
 										semiTransparent={order.status === 'finished'}
 									>
 										<div>{i + 1}</div>
-										<OrderImage url={order.screenshot}></OrderImage>
+										<OrderImage>
+											<SimpleCanvas
+												activeColor={order.activeColor}
+												activePrint={order.activePrint}
+											></SimpleCanvas>
+										</OrderImage>
 										<OrderColumn>{order.id}</OrderColumn>
 										<OrderColumn>{order.user.email}</OrderColumn>
 										<OrderColumn>{order.user.displayName}</OrderColumn>

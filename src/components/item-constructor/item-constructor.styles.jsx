@@ -35,6 +35,7 @@ export const RenderWrapper = styled.div`
 	padding-bottom: 100%;
 	box-sizing: border-box;
 	height: 0;
+	overflow: hidden;
 `;
 export const Canvas = styled.div`
 	width: 100%;
@@ -65,6 +66,9 @@ export const ControllWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
+	@media (min-width: 769px) {
+		max-width: 60%;
+	}
 `;
 export const PushDown = styled.div`
 	margin-top: auto;

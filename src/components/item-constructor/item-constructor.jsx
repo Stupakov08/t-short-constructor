@@ -1,8 +1,7 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Controlls from '../controlls/controlls';
 import Canvas from '../canvas/canvas';
 import OrderButton from '../order-button/order-button';
-
 
 import {
 	ConstructorArea,
@@ -20,20 +19,21 @@ const ItemConstructor = ({
 	activeColor,
 	...props
 }) => {
-	const canvasRef = useRef();
-
 	return (
 		<ConstructorArea>
 			<RenderArea>
 				<RenderWrapper>
-					<Canvas forvardcanvasRef={canvasRef} />
+					<Canvas />
 				</RenderWrapper>
-				<div className="capture">This is an approximate view only. The product may differ from what you see above.</div>
+				<div className='capture'>
+					This is an approximate view only. The product may differ from what you
+					see above.
+				</div>
 			</RenderArea>
 			<ControllWrapper>
 				<Controlls />
 				<PushDown>
-					<OrderButton canvasRef={canvasRef} />
+					<OrderButton />
 				</PushDown>
 			</ControllWrapper>
 		</ConstructorArea>

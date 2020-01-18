@@ -10,6 +10,11 @@ export const HeaderContainer = styled.div`
 	color: #202020;
 	background-color: #fff;
 	box-shadow: 1px 0px 3px 1px #00000020;
+	@media (max-width: 768px) {
+		position: fixed;
+		z-index: 100;
+		top: 0px;
+	}
 `;
 export const Content = styled.div`
 	width: 1200px;

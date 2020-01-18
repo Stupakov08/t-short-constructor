@@ -1,7 +1,7 @@
 .cart-dropdown {
 	position: absolute;
 	width: 240px;
-	max-height: 380px;
+	max-height: 480px;
 	display: flex;
 	flex-direction: column;
 	padding: 20px;
@@ -26,11 +26,11 @@
 	button {
 		margin-top: auto;
 	}
-	.cart-total{
+	.cart-total {
 		padding: 5px;
 		text-align: right;
 	}
 	.cart-total > span {
-		font-size: 1.5em;;
+		font-size: 1.5em;
 	}
 }

@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { setOrders } from '../../redux/orders/orders.actions';
-import {
-	getUserOrders,
-} from '../../firebase/firebase.utils';
+import { getUserOrders } from '../../firebase/firebase.utils';
 import {
 	Content,
 	AdminArea,
@@ -15,14 +13,15 @@ import {
 	OrderHeaderItem
 } from './orders.styled';
 import Header from '../../components/header/header.component';
+import SimpleCanvas from '../../components/canvas/simple-canvas';
 
 const Orders = ({ setOrders, orders, user }) => {
 	useEffect(() => {
 		getUserOrders(user).then(res => {
 			let orders = res.docs.map(snap => ({ id: snap.id, ...snap.data() }));
-			orders = orders.sort(function (x, y) {
+			orders = orders.sort(function(x, y) {
 				return y.time - x.time;
-			})
+			});
 			setOrders(orders);
 		});
 	}, [setOrders, user]);
@@ -51,7 +50,12 @@ const Orders = ({ setOrders, orders, user }) => {
 										semiTransparent={order.status === 'finished'}
 									>
 										<div>{i + 1}</div>
-										<OrderImage url={order.screenshot}></OrderImage>
+										<OrderImage>
+											<SimpleCanvas
+												activePrint={order.activePrint}
+												activeColor={order.activeColor}
+											></SimpleCanvas>
+										</OrderImage>
 										<OrderColumn>{order.id}</OrderColumn>
 										<OrderColumn>{order.activeSize.name}</OrderColumn>
 										<OrderColumn>{order.activeColor.url}</OrderColumn>
@@ -64,7 +68,7 @@ const Orders = ({ setOrders, orders, user }) => {
 										</OrderColumn>
 										<OrderColumn>{order.price} UAH</OrderColumn>
 										<OrderColumn>
-											{order.status === "finished" ? "Recieved" : "In progress"}
+											{order.status === 'finished' ? 'Recieved' : 'In progress'}
 										</OrderColumn>
 									</OrderItem>
 								))}
@@ -83,6 +87,6 @@ const mapStateToProps = props => ({
 const mapDispatchToProps = dispatch => ({
 	setOrders: orders => {
 		dispatch(setOrders(orders));
-	},
+	}
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Orders);
