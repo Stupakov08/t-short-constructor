@@ -1,8 +1,20 @@
+import UserActionTypes from './user.types';
+
 export const setCurrentUser = user => ({
-	type: 'SET_CURRENT_USER',
+	type: UserActionTypes.SET_CURRENT_USER,
 	payload: user
 });
 export const clearUser = () => ({
-	type: 'CLEAR_USER'
+	type: UserActionTypes.CLEAR_USER
 });
-
+export const googleSignInStart = () => ({
+	type: UserActionTypes.GOOGLE_SIGN_IN_START
+});
+export const googleSignInSuccess = user => ({
+	type: UserActionTypes.GOOGLE_SIGN_IN_SUCCESS,
+	payload: user
+});
+export const googleSignInFailure = error => ({
+	type: UserActionTypes.GOOGLE_SIGN_IN_FAilURE,
+	payload: error
+});
